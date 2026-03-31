@@ -3,8 +3,8 @@ import React from "react";
 
 export default function Navbar() {
   return (
-    <nav className="w-full  border-b border-border shadow-sm relative">
-      <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
+    <nav className="w-full  border-b border-border shadow-sm relative ">
+      <div className="max-w-7xl mx-auto mg px-6 py-3 flex items-center justify-between">
   
         {/* Logo */}
         <Link href="/" className="text-3xl font-bold underline">
@@ -18,7 +18,7 @@ export default function Navbar() {
           </Link>
           <Link
             href="/daily-plan"
-            className="inline-block px-4 py-1 font-medium border-4 border-black rounded-xl"
+            className="inline-block px-4 py-1 font-medium border-4 border-black rounded-xl  "
           >
             Daily Plan
           </Link>
@@ -33,10 +33,10 @@ export default function Navbar() {
 
         {/* Right Links */}
         <div className="flex items-center space-x-4">
-          <a href="#" className=" bg-blue-500 px-4 py-2 rounded-xl border-blue-500  hover:bg-blue-600 text-white hover:text-white ">League &#127942;</a>
-          <a href="#" className="hover:underline">Profile</a>
-          <a href="#" className="hover:underline">Sign In</a>
-          <a href="#" className="hover:underline">Sign Up</a>
+          <Link href="#" className=" bg-blue-500 px-4 py-2 rounded-xl border-blue-500  hover:bg-blue-600 text-white hover:text-white ">League &#127942;</Link>
+          <Link href="#" className="hover:underline">Profile</Link>
+          <Link href="#" className="hover:underline">Sign In</Link>
+          <Link href="#" className="hover:underline">Sign Up</Link>
         </div>
       </div>
     </nav>

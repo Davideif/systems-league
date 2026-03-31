@@ -1,0 +1,92 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id           Int              @id @default(autoincrement())
+  username     String           @unique
+  email        String           @unique
+  password     String?
+  googleId     String?
+  streak       Int              @default(0)
+  totalScore   Int              @default(0)
+  createdAt    DateTime         @default(now())
+
+  tasks        Task[]
+  days         Day[]
+  completions  TaskCompletion[]
+}
+
+model Task {
+  id           Int              @id @default(autoincrement())
+  title        String
+  duration     Int              // minutes
+  createdAt    DateTime         @default(now())
+
+  userId       Int
+  categoryId   Int
+  difficultyId Int
+
+  user         User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  category     Category         @relation(fields: [categoryId], references: [id])
+  difficulty   Difficulty       @relation(fields: [difficultyId], references: [id])
+
+  completions  TaskCompletion[]
+}
+
+model Day {
+  id        Int      @id @default(autoincrement())
+  date      DateTime
+  userId    Int
+  moodId    Int?
+
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  mood      Mood?    @relation(fields: [moodId], references: [id])
+
+  completions TaskCompletion[]
+
+  @@unique([userId, date])
+}
+
+model TaskCompletion {
+  id              Int       @id @default(autoincrement())
+  completedAt     DateTime  @default(now())
+  plannedTime     DateTime?
+  durationActual  Int?
+  photoUrl        String?
+  score           Int
+
+  userId          Int
+  taskId          Int
+  dayId           Int
+
+  user            User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  task            Task      @relation(fields: [taskId], references: [id])
+  day             Day       @relation(fields: [dayId], references: [id])
+}
+
+model Category {
+  id    Int    @id @default(autoincrement())
+  name  String @unique
+
+  tasks Task[]
+}
+
+model Difficulty {
+  id         Int    @id @default(autoincrement())
+  name       String @unique
+  baseScore  Int
+
+  tasks Task[]
+}
+
+model Mood {
+  id    Int    @id @default(autoincrement())
+  name  String @unique
+
+  days  Day[]
+}

@@ -1,8 +1,12 @@
+import SystemForm from '@/components/systems/SystemForm'
 import React from 'react'
 
 const Systems = () => {
   return (
-    <div>Systems</div>
+   
+    <SystemForm/>
+    
+
   )
 }
 
