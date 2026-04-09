@@ -35,7 +35,7 @@ export default function Navbar() {
         <div className="flex items-center space-x-4">
           <Link href="#" className=" bg-blue-500 px-4 py-2 rounded-xl border-blue-500  hover:bg-blue-600 text-white hover:text-white ">League &#127942;</Link>
           <Link href="#" className="hover:underline">Profile</Link>
-          <Link href="#" className="hover:underline">Sign In</Link>
+          <Link href="/login" className="hover:underline">Sign In</Link>
           <Link href="#" className="hover:underline">Sign Up</Link>
         </div>
       </div>
